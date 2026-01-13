@@ -2,23 +2,33 @@
 
 import { experiences } from '../../contents/experience'
 import { FaBriefcase, FaTools, FaCalendarAlt } from 'react-icons/fa'
-import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer, cardHoverSmall } from '../../utils/animations'
+import { motion, Variants } from 'framer-motion'
+import { fadeInUp, staggerContainer } from '../../utils/animations'
 
 export default function Experience() {
+  // ✅ Correctly typed transition (FIX)
+  const hoverTransition = {
+    type: 'spring' as const,
+    stiffness: 300,
+  }
+
   return (
     <section className="py-20">
       <div className="container max-w-7xl mx-auto px-4">
+        {/* Section Title */}
         <motion.h2
           className="text-3xl font-bold mb-12 text-center"
-          {...fadeInUp}
+          variants={fadeInUp as Variants}
+          initial="initial"
+          animate="animate"
         >
           Experience
         </motion.h2>
 
+        {/* Experience Cards Grid */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          variants={staggerContainer}
+          variants={staggerContainer as Variants}
           initial="initial"
           animate="animate"
         >
@@ -26,22 +36,26 @@ export default function Experience() {
             <motion.article
               key={index}
               className="bg-white dark:bg-dark/50 rounded-lg shadow-md p-6"
-              variants={fadeInUp}
-              {...cardHoverSmall}
+              variants={fadeInUp as Variants}
+              whileHover={{ scale: 1.03 }}
+              transition={hoverTransition}
             >
+              {/* Role */}
               <motion.h3
                 className="text-xl font-semibold mb-1"
                 whileHover={{ x: 5 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={hoverTransition}
               >
                 {exp.role}
               </motion.h3>
 
+              {/* Company */}
               <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center mb-3">
                 <FaBriefcase className="mr-2" />
                 {exp.company}
               </p>
 
+              {/* Description */}
               <motion.p
                 className="text-gray-600 dark:text-gray-300 mb-4"
                 initial={{ opacity: 0 }}
@@ -51,6 +65,7 @@ export default function Experience() {
                 {exp.description}
               </motion.p>
 
+              {/* Duration & Technologies */}
               <motion.div
                 className="flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 gap-4"
                 initial={{ opacity: 0 }}
@@ -60,6 +75,7 @@ export default function Experience() {
                 <motion.span
                   className="flex items-center"
                   whileHover={{ scale: 1.05 }}
+                  transition={hoverTransition}
                 >
                   <FaCalendarAlt className="mr-2" />
                   {exp.duration}
@@ -81,6 +97,7 @@ export default function Experience() {
           ))}
         </motion.div>
 
+        {/* Call-to-Action */}
         <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 20 }}

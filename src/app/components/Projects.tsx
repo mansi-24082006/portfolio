@@ -7,6 +7,12 @@ import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer, cardHoverSmall } from '../../utils/animations'
 
 export default function Projects() {
+  // ✅ Properly typed spring transition
+  const springTransition = {
+    type: 'spring' as const,
+    stiffness: 300,
+  }
+
   return (
     <section className="py-24 bg-gray-50 dark:bg-black">
       <div className="container max-w-7xl mx-auto px-4">
@@ -48,7 +54,7 @@ export default function Projects() {
               <motion.h3
                 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white"
                 whileHover={{ x: 4 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                transition={springTransition}
               >
                 {project.title}
               </motion.h3>
@@ -76,6 +82,7 @@ export default function Projects() {
                     className="px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary dark:bg-primary/20"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
+                    transition={springTransition}
                   >
                     {tech}
                   </motion.span>
@@ -96,6 +103,7 @@ export default function Projects() {
                   className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition"
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.95 }}
+                  transition={springTransition}
                 >
                   <FaGithub className="h-5 w-5" />
                   Code
@@ -108,6 +116,7 @@ export default function Projects() {
                   className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary transition"
                   whileHover={{ x: 4 }}
                   whileTap={{ scale: 0.95 }}
+                  transition={springTransition}
                 >
                   <FaExternalLinkAlt className="h-4 w-4" />
                   Live Demo

@@ -8,9 +8,7 @@ export interface Project {
   demoLink: string
   image: string
 }
-
 /* ================= EXPERIENCE ================= */
-
 export interface Experience {
   role: string
   company: string
@@ -20,18 +18,21 @@ export interface Experience {
 }
 
 /* ================= ACHIEVEMENT ================= */
-
 export interface Achievement {
   title: string
   description: string
   year: string
+  image?: string // optional
 }
 
 /* ================= CERTIFICATION ================= */
-
 export interface Certification {
   title: string
   issuer: string
   year: string
-  credentialUrl?: string
+  duration?: string
+  issuedDate?: string
+  credentialId?: string
+  level?: string
+  certificateFile: string
 }
