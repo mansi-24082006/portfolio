@@ -41,8 +41,8 @@ export default function Hero() {
 
               <motion.div
                 className="relative z-10 w-full h-full rounded-full ring-2 ring-primary bg-white/5 p-1 overflow-hidden"
-                whileHover={{ scale: 1.12, boxShadow: "0 0 20px #51dcf2" }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.10, boxShadow: "0 0 40px #51dcf2" }}
+                whileTap={{ scale: 0.90 }}
               >
                 <Image
                   src="/pro.jpg"
@@ -159,7 +159,7 @@ export default function Hero() {
                   shadow-lg shadow-blue-500/20 hover:shadow-blue-400/50 transition-all duration-300"
                 >
                   <ArrowBigDownDash size={18} />
-                  Resume
+                  Download Resume
                   <span className="absolute inset-0 from-transparent via-white/30 to-transparent
                   -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
                   <span className="absolute inset-0 rounded-xl ring-1 ring-white/20 pointer-events-none" />
