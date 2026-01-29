@@ -132,7 +132,7 @@ export default function Hero() {
 
               <motion.div
                 className="relative z-10 w-full h-full rounded-full ring-2 ring-primary bg-white/5 p-1 overflow-hidden"
-                whileHover={{ scale: 1.1, boxShadow: "0 0 40px #51dcf2" }}
+                whileHover={{ scale: 1.1, boxShadow: "0 0 70px #51dcf2" }}
                 whileTap={{ scale: 0.9 }}
               >
                 <Image
