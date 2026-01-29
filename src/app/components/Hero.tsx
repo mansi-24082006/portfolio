@@ -182,7 +182,7 @@ export default function Hero() {
             </motion.p>
 
             {/* Social Icons */}
-            <motion.div
+             <motion.div
               className="flex justify-center md:justify-start space-x-4 mb-6 sm:mb-8"
               {...fadeInUp}
               transition={{ delay: 0.5 }}
@@ -208,21 +208,51 @@ export default function Hero() {
               ))}
             </motion.div>
 
-            {/* Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row justify-center md:justify-start gap-4"
               {...fadeInUp}
               transition={{ delay: 0.6 }}
             >
-              <Link href="/projects" className="btn-primary flex items-center gap-2">
-                <FolderGit size={20} />
-                Projects
-              </Link>
+              <motion.div
+                whileHover={{ rotateX: -8, rotateY: 8, y: -4 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                style={{ perspective: 1000 }}
+              >
+                <Link
+                  href="/projects"
+                  className="relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 rounded-xl
+                  bg-primary text-white font-semibold overflow-hidden group
+                  shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/60 transition-all duration-300"
+                >
+                  <FolderGit size={20} />
+                  Projects
+                  <span className="absolute inset-0 from-transparent via-white/40 to-transparent
+                  -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
+                  <span className="absolute inset-0 rounded-xl ring-1 ring-white/20 pointer-events-none" />
+                </Link>
+              </motion.div>
 
-              <Link href="/resume.pdf" target="_blank" className="btn-secondary flex items-center gap-2">
-                <ArrowBigDownDash size={18} />
-                Download Resume
-              </Link>
+              <motion.div
+                whileHover={{ rotateX: -8, rotateY: -8, y: -4 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                style={{ perspective: 1000 }}
+              >
+                <Link
+                  href="/resume.pdf"
+                  target="_blank"
+                  className="relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 rounded-xl
+                  bg-secondary text-primary dark:text-white font-semibold overflow-hidden group
+                  shadow-lg shadow-blue-500/20 hover:shadow-blue-400/50 transition-all duration-300"
+                >
+                  <ArrowBigDownDash size={18} />
+                  Download Resume
+                  <span className="absolute inset-0 from-transparent via-white/30 to-transparent
+                  -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
+                  <span className="absolute inset-0 rounded-xl ring-1 ring-white/20 pointer-events-none" />
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
         </div>
