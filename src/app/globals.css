@@ -22,7 +22,6 @@
   animation: typing 2.5s steps(30, end), blink 0.75s step-end infinite;
 }
 
-/* typing animation */
 @keyframes typing {
   from {
     width: 0;
