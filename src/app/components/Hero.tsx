@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeInUp, fadeIn } from "../../utils/animations";
-import TypedText from "./TypedText"; 
+import TypedText from "./TypedText";
 import { FolderGit, ArrowBigDownDash } from "lucide-react";
 import { Pacifico } from "next/font/google";
 import { useEffect, useRef } from "react";
@@ -32,29 +32,18 @@ export default function Hero() {
       layer: number;
     }
 
-    interface ShootingStar {
-      x: number;
-      y: number;
-      len: number;
-      speed: number;
-      angle: number;
-      alpha: number;
-    }
-
     let stars: Star[] = [];
-    let shootingStars: ShootingStar[] = [];
     const mouse = { x: 0, y: 0 };
 
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       stars = [];
-      shootingStars = [];
 
       const layers = [
-        { count: 70, speedFactor: 0.5, size: [0.5, 1] },   // Far stars
-        { count: 50, speedFactor: 1, size: [1, 2] },       // Medium stars
-        { count: 30, speedFactor: 1.5, size: [2, 3] },     // Close stars
+        { count: 70, speedFactor: 0.5, size: [0.5, 1] },
+        { count: 50, speedFactor: 1, size: [1, 2] },
+        { count: 30, speedFactor: 1.5, size: [2, 3] },
       ];
 
       layers.forEach((layer) => {
@@ -73,22 +62,9 @@ export default function Hero() {
       });
     };
 
-    const createShootingStar = () => {
-      shootingStars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height / 2, // from top half
-        len: Math.random() * 80 + 50,
-        speed: Math.random() * 10 + 10,
-        angle: Math.PI / 4,
-        alpha: Math.random() * 0.5 + 0.5,
-      });
-    };
-
     const animate = () => {
-      if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw stars
       stars.forEach((s) => {
         s.x += s.vx + (mouse.x - canvas.width / 2) * 0.001 * s.layer;
         s.y += s.vy + (mouse.y - canvas.height / 2) * 0.001 * s.layer;
@@ -106,25 +82,6 @@ export default function Hero() {
         ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
         ctx.fill();
       });
-
-      // Draw shooting stars
-      shootingStars.forEach((sh, index) => {
-        sh.x += sh.speed * Math.cos(sh.angle);
-        sh.y += sh.speed * Math.sin(sh.angle);
-
-        ctx.beginPath();
-        ctx.moveTo(sh.x, sh.y);
-        ctx.lineTo(sh.x - sh.len * Math.cos(sh.angle), sh.y - sh.len * Math.sin(sh.angle));
-        ctx.strokeStyle = `rgba(128,128,128,${sh.alpha})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        // Remove if off screen
-        if (sh.x > canvas.width || sh.y > canvas.height) shootingStars.splice(index, 1);
-      });
-
-      // Randomly create shooting stars
-      if (Math.random() < 0.02) createShootingStar();
 
       requestAnimationFrame(animate);
     };
@@ -147,7 +104,6 @@ export default function Hero() {
 
   return (
     <section className="relative py-20 md:py-28 overflow-hidden">
-      {/* STARFIELD CANVAS */}
       <canvas ref={canvasRef} className="absolute inset-0 -z-20" />
 
       <div className="container max-w-7xl px-4 mx-auto relative z-10">
@@ -176,8 +132,8 @@ export default function Hero() {
 
               <motion.div
                 className="relative z-10 w-full h-full rounded-full ring-2 ring-primary bg-white/5 p-1 overflow-hidden"
-                whileHover={{ scale: 1.10, boxShadow: "0 0 40px #51dcf2" }}
-                whileTap={{ scale: 0.90 }}
+                whileHover={{ scale: 1.1, boxShadow: "0 0 40px #51dcf2" }}
+                whileTap={{ scale: 0.9 }}
               >
                 <Image
                   src="/pro.jpg"
@@ -225,6 +181,7 @@ export default function Hero() {
               />
             </motion.p>
 
+            {/* Social Icons */}
             <motion.div
               className="flex justify-center md:justify-start space-x-4 mb-6 sm:mb-8"
               {...fadeInUp}
@@ -251,51 +208,21 @@ export default function Hero() {
               ))}
             </motion.div>
 
+            {/* Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row justify-center md:justify-start gap-4"
               {...fadeInUp}
               transition={{ delay: 0.6 }}
             >
-              <motion.div
-                whileHover={{ rotateX: -8, rotateY: 8, y: -4 }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                style={{ perspective: 1000 }}
-              >
-                <Link
-                  href="/projects"
-                  className="relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 rounded-xl
-                  bg-primary text-white font-semibold overflow-hidden group
-                  shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/60 transition-all duration-300"
-                >
-                  <FolderGit size={20} />
-                  Projects
-                  <span className="absolute inset-0 from-transparent via-white/40 to-transparent
-                  -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
-                  <span className="absolute inset-0 rounded-xl ring-1 ring-white/20 pointer-events-none" />
-                </Link>
-              </motion.div>
+              <Link href="/projects" className="btn-primary flex items-center gap-2">
+                <FolderGit size={20} />
+                Projects
+              </Link>
 
-              <motion.div
-                whileHover={{ rotateX: -8, rotateY: -8, y: -4 }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                style={{ perspective: 1000 }}
-              >
-                <Link
-                  href="/resume.pdf"
-                  target="_blank"
-                  className="relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 rounded-xl
-                  bg-secondary text-primary dark:text-white font-semibold overflow-hidden group
-                  shadow-lg shadow-blue-500/20 hover:shadow-blue-400/50 transition-all duration-300"
-                >
-                  <ArrowBigDownDash size={18} />
-                  Download Resume
-                  <span className="absolute inset-0 from-transparent via-white/30 to-transparent
-                  -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
-                  <span className="absolute inset-0 rounded-xl ring-1 ring-white/20 pointer-events-none" />
-                </Link>
-              </motion.div>
+              <Link href="/resume.pdf" target="_blank" className="btn-secondary flex items-center gap-2">
+                <ArrowBigDownDash size={18} />
+                Download Resume
+              </Link>
             </motion.div>
           </div>
         </div>
