@@ -15,10 +15,7 @@ This portfolio is perfect for sharing your work with recruiters, clients, or any
 
 ## 🌍 Live Demo
 
-👉 [View Live Site]([https://your-vercel-deployed-link.vercel.app](https://portfolio-x53le5nq2-mansis-projects-9d3863cb.vercel.app/))  
-*(Replace with your actual deployed site link.)*
-
----
+👉 [View Live Site](https://mansi-portfolio-90.vercel.app/)  
 
 ## 🛠️ Features
 
