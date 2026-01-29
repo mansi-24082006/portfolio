@@ -42,8 +42,8 @@ export const projects: Project[] = [
     description:
       'Coffee-themed frontend project with attractive UI and animations.',
     technologies: ['HTML', 'CSS', 'JavaScript','Vanilla JS'],
-    githubLink: 'https://github.com/mansi-99914/BeanUp',
-    demoLink: 'https://mansi-99914.github.io/BeanUp/',
+    githubLink: 'https://github.com/mansi-24082006/BeanUp',
+    demoLink: 'https://mansi-24082006.github.io/BeanUp/',
     image: '/projects/coffee.png',
   },
   {
@@ -51,8 +51,8 @@ export const projects: Project[] = [
     description:
       'A customizable QR code generator with logo embedding, color options, and error correction',
     technologies: ['JavaScript','Vanilla JS', 'QR API'],
-    githubLink: 'https://github.com/mansi-99914/QRExpert',
-    demoLink: 'https://mansi-99914.github.io/QRExpert/',
+    githubLink: 'https://github.com/mansi-24082006/QRExpert',
+    demoLink: 'https://mansi-24082006.github.io/QRExpert/',
     image: '/projects/QR.png',
   },
   {
@@ -60,8 +60,8 @@ export const projects: Project[] = [
     description:
       'Simple and effective task management application.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
-    githubLink: 'https://github.com/mansi-99914/To-Do-List-App',
-    demoLink: 'https://mansi-99914.github.io/To-Do-List-App/',
+    githubLink: 'https://github.com/mansi-24082006/To-Do-List-App',
+    demoLink: 'https://mansi-24082006.github.io/To-Do-List-App/',
     image: '/projects/To-do.png',
   },
   {
@@ -69,8 +69,8 @@ export const projects: Project[] = [
     description:
       'Classic Tic Tac Toe game built using JavaScript.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
-    githubLink: 'https://github.com/mansi-99914/Tic-Tac-Toe',
-    demoLink: 'https://mansi-99914.github.io/Tic-Tac-Toe/',
+    githubLink: 'https://github.com/mansi-24082006/Tic-Tac-Toe',
+    demoLink: 'https://mansi-24082006.github.io/Tic-Tac-Toe/',
     image: '/projects/TTT.png',
   },
   {
@@ -78,8 +78,8 @@ export const projects: Project[] = [
     description:
       'Chess game project focusing on logic and UI.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
-    githubLink: 'https://github.com/mansi-99914/Chess-Master',
-    demoLink: 'https://mansi-99914.github.io/Chess-Master/',
+    githubLink: 'https://github.com/mansi-24082006/Chess-Master',
+    demoLink: 'https://mansi-24082006.github.io/Chess-Master/',
     image: '/projects/Chess.png',
   },
 ]
