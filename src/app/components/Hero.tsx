@@ -240,7 +240,7 @@ export default function Hero() {
                 style={{ perspective: 1000 }}
               >
                 <Link
-                  href="/Mansi_Vaghasiya_FullStack_Resume.pdf"
+                  href="/Resume.pdf"
                   target="_blank"
                   className="relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 rounded-xl
                   bg-secondary text-primary dark:text-white font-semibold overflow-hidden group
