@@ -54,7 +54,7 @@ export const certifications: Certification[] = [
     title: 'Full Stack Web Development',
     issuer: 'Udemy',
     year: '2025',
-    certificateFile: '/certificates/udemy.pdf',
+    certificateFile: '/certificates/Udemy.pdf',
   },
   {
     title: 'Embedded Software Engineer',
