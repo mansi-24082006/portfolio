@@ -12,10 +12,13 @@ export interface Project {
 export interface Experience {
   role: string
   company: string
+  type: string
+  location: string
   duration: string
   description: string
   technologies: string[]
 }
+
 
 /* ================= ACHIEVEMENT ================= */
 export interface Achievement {
