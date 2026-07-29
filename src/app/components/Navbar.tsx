@@ -1,144 +1,296 @@
-"use client";
-import Link from "next/link";
-import Image from "next/image";
-import {
-  SunIcon,
-  MoonIcon,
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import { useTheme } from "../context/ThemeContext";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+'use client'
 
-export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useTheme } from '../context/ThemeContext'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Sun, Moon, Menu, X, Search, FileText } from 'lucide-react'
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+interface NavbarProps {
+  onOpenPalette?: () => void
+}
+
+export default function Navbar({ onOpenPalette }: NavbarProps) {
+  const { theme, toggleTheme } = useTheme()
+  const pathname = usePathname()
+
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSec, setActiveSec] = useState('hero')
 
   const menuItems = [
-    { href: "/", label: "Home" },
-    { href: "/skills", label: "Skills" },
-    { href: "/projects", label: "Projects" },
-    { href: "/experiences", label: "Experiences" },
-    { href: "/contact", label: "Contact" },
-  ];
+    { href: '/#hero', label: 'Home', id: 'hero' },
+    { href: '/#about', label: 'About', id: 'about' },
+    { href: '/#projects-section', label: 'Projects', id: 'projects-section' },
+    { href: '/#timeline', label: 'Experience', id: 'timeline' },
+    { href: '/#skills', label: 'Skills', id: 'skills' },
+    { href: '/#achievements', label: 'Achievements', id: 'achievements' },
+    { href: '/#contact', label: 'Contact', id: 'contact' },
+  ]
+
+  // Track window scroll for navbar styling and active sections using IntersectionObserver
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Initial check
+
+    // Robust active section tracking using IntersectionObserver
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Triggers when section is comfortably in view
+      threshold: 0,
+    }
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSec(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    menuItems.forEach((item) => {
+      const element = document.getElementById(item.id)
+      if (element) observer.observe(element)
+    })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      observer.disconnect()
+    }
+  }, [menuItems])
+
+  // Handle smooth scroll when navigating / page load with hash
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const handleHashScroll = () => {
+      const hash = window.location.hash
+      if (hash) {
+        const id = hash.replace('#', '')
+        const element = document.getElementById(id)
+        if (element) {
+          // Adjust scroll position to account for fixed navbar
+          const y = element.getBoundingClientRect().top + window.scrollY - 80
+          window.scrollTo({ top: y, behavior: 'smooth' })
+        }
+      }
+    }
+
+    handleHashScroll()
+    window.addEventListener('hashchange', handleHashScroll)
+    return () => window.removeEventListener('hashchange', handleHashScroll)
+  }, [pathname])
 
   return (
-    <nav className="fixed w-full bg-white/80 dark:bg-dark/80 backdrop-blur-sm z-50">
-      <div className="container max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-      <Link
-  href="/"
-  className="text-3xl italic font-serif tracking-[-0.1em] 
-             bg-gradient-to-r from-indigo-400 to-pink-400 
-             bg-clip-text text-transparent 
-             hover:tracking-tight transition-all duration-200"
->
-  Mansi<span className="text-sm align-top ml-1 text-indigo-300">©</span>
-</Link>
+    <nav
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-in-out ${isScrolled
+        ? 'py-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg shadow-sm border-b border-slate-200 dark:border-slate-800'
+        : 'py-5 bg-transparent border-b border-transparent'
+        }`}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
 
+        {/* Brand Logo */}
+        <Link
+          href="/"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="group inline-flex items-center gap-1.5 rounded-lg border border-transparent px-2 py-1 transition-all hover:border-slate-200 dark:hover:border-slate-800"
+          aria-label="Home"
+        >
+          <span className="font-mono text-blue-600 dark:text-blue-400 text-lg font-bold">
+            {"<"}
+          </span>
+          <span className="font-semibold text-slate-900 dark:text-slate-100 tracking-tight">
+            Mansi
+          </span>
+          <span className="font-mono text-blue-600 dark:text-blue-400 text-lg font-bold flex items-center">
+            {"/>"}__
+          </span>
+        </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            {menuItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="hover:text-primary transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <motion.button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+        {/* Desktop Navbar List Items */}
+        <div className="hidden lg:flex items-center gap-8">
+          <ul className="flex items-center gap-1">
+            {menuItems.map((item) => {
+              const isActive = activeSec === item.id
+              return (
+                <li key={item.id}>
+                  <Link
+                    href={item.href}
+                    className={`relative px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors duration-200 rounded-md ${isActive
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                      }`}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeNavIndicator"
+                        className="absolute inset-x-3 bottom-0 h-[2px] rounded-t-full bg-blue-600 dark:bg-blue-400"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+
+          <div className="h-6 w-px bg-slate-200 dark:bg-slate-800" />
+
+          {/* Quick Actions Panel */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onOpenPalette}
+              aria-label="Search Command Palette"
+              className="group flex items-center gap-2 p-2 rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
             >
-              {theme === "dark" ? (
-                <SunIcon className="h-5 w-5" />
-              ) : (
-                <MoonIcon className="h-5 w-5" />
-              )}
-            </motion.button>
-          </div>
+              <Search className="w-4 h-4 transition-transform group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+              <kbd className="hidden sm:inline-block text-[10px] font-mono bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-600">
+                Ctrl K
+              </kbd>
+            </button>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            onClick={toggleMobileMenu}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {isMobileMenuOpen ? (
-              <XMarkIcon className="h-6 w-6" />
-            ) : (
-              <Bars3Icon className="h-6 w-6" />
-            )}
-          </motion.button>
+            <button
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-400 transition-transform hover:rotate-45" />
+              ) : (
+                <Moon className="w-4 h-4 transition-transform hover:-rotate-12" />
+              )}
+            </button>
+
+            <a
+              href="https://drive.google.com/file/d/1MSGQV0Nuu2yGTIaMCy-Cq2Ua4e0shgRC/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm hover:shadow transition-all active:scale-95"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Resume</span>
+            </a>
+          </div>
         </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden"
-            >
-              <div className="py-4 space-y-4">
-                {menuItems.map((item, index) => (
-                  <motion.div
-                    key={item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Link
-                      href={item.href}
-                      className="block py-2 hover:text-primary transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
-                ))}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: menuItems.length * 0.1 }}
-                >
-                  <button
-                    onClick={() => {
-                      toggleTheme();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="flex items-center py-2 hover:text-primary transition-colors"
-                  >
-                    {theme === "dark" ? (
-                      <>
-                        <SunIcon className="h-5 w-5 mr-2" />
-                        Light Mode
-                      </>
-                    ) : (
-                      <>
-                        <MoonIcon className="h-5 w-5 mr-2" />
-                        Dark Mode
-                      </>
-                    )}
-                  </button>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Header Triggers */}
+        <div className="flex items-center gap-1 lg:hidden">
+          <button
+            onClick={onOpenPalette}
+            aria-label="Search"
+            className="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            <Search className="w-5 h-5" />
+          </button>
+
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-2 rounded-md text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
+          </button>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(prev => !prev)}
+            aria-label="Toggle menu"
+            className="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Full Screen Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 h-screen w-screen bg-white/98 dark:bg-[#080c14]/98 backdrop-blur-2xl z-50 lg:hidden flex flex-col"
+          >
+            {/* Header row in mobile overlay */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100 dark:border-white/5">
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="group flex items-center gap-2 rounded-xl border border-slate-200 dark:border-white/10 px-3.5 py-1.5"
+              >
+                <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-bold">
+                  {"<"}
+                </span>
+                <span className="font-semibold text-sm text-slate-900 dark:text-white">
+                  Mansi
+                </span>
+                <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-bold">
+                  {"/>"}__
+                </span>
+              </Link>
+
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Close menu"
+                className="p-2.5 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors cursor-pointer"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Centered Large Menu Items */}
+            <div className="flex-1 flex flex-col justify-center items-center px-6">
+              <ul className="w-full max-w-sm flex flex-col gap-4 text-center">
+                {menuItems.map((item, index) => {
+                  const isActive = activeSec === item.id
+                  return (
+                    <motion.li
+                      key={item.id}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05, ease: "easeOut" }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`block py-3 text-2xl font-bold uppercase tracking-wider rounded-xl transition-all duration-300 ${isActive
+                            ? 'text-blue-600 dark:text-blue-400 scale-105'
+                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                          }`}
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.li>
+                  )
+                })}
+              </ul>
+            </div>
+
+            {/* Bottom Actions Area */}
+            <div className="p-8 border-t border-slate-100 dark:border-white/5 flex flex-col gap-4 items-center bg-slate-50/50 dark:bg-slate-950/20">
+              <a
+                href="https://drive.google.com/file/d/1MSGQV0Nuu2yGTIaMCy-Cq2Ua4e0shgRC/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full max-w-sm inline-flex items-center justify-center gap-2 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] transition-all"
+              >
+                <FileText className="w-4 h-4" />
+                <span>Open Resume</span>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
-  );
+  )
 }

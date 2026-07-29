@@ -7,6 +7,14 @@ export interface Project {
   githubLink: string
   demoLink: string
   image: string
+  isFeatured?: boolean
+  problem?: string
+  solution?: string
+  features?: string[]
+  architecture?: string
+  challenges?: string
+  learnings?: string
+  category?: 'ai' | 'fullstack' | 'frontend' | 'vanilla'
 }
 /* ================= EXPERIENCE ================= */
 export interface Experience {

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
     transition: { staggerChildren: 0.1, delayChildren: 0.3 }
   }
@@ -22,31 +22,31 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setStatus("loading");
+    e.preventDefault();
+    setStatus("loading");
 
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (res.ok) {
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-    } else {
+      if (res.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus("idle");
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
       setStatus("idle");
-      alert("Failed to send message. Please try again.");
+      alert("Something went wrong. Please try later.");
     }
-  } catch (error) {
-    console.error(error);
-    setStatus("idle");
-    alert("Something went wrong. Please try later.");
-  }
-};
+  };
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-1 mb-1">
@@ -58,24 +58,24 @@ export default function Contact() {
       >
         {/* Header */}
         <div className="text-center mb-10">
-          <motion.span 
-            variants={itemVariants} 
+          <motion.span
+            variants={itemVariants}
             className="text-4xl text-primary font-mono tracking-widest uppercase"
           >
             Get in Touch
           </motion.span>
-          <motion.h2 
-            variants={itemVariants} 
+          <motion.h2
+            variants={itemVariants}
             className="text-xl md:text-xl mt-4 tracking-tight text-gray-700 dark:text-gray-300"
           >
-            Interested in connecting or working together? Leave your contact info and I'll respond soon.
+            Interested in connecting or working together? Leave your contact info and I&apos;ll respond soon.
           </motion.h2>
         </div>
 
         {/* Contact Form */}
         <motion.div variants={itemVariants}>
-          <form 
-            onSubmit={handleSubmit} 
+          <form
+            onSubmit={handleSubmit}
             className="bg-white/50 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl flex flex-col gap-6"
           >
             {/* Name and Email */}
@@ -88,7 +88,7 @@ export default function Contact() {
                   required
                   value={formData.name}
                   className="w-full bg-transparent py-3 outline-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
               </div>
               <div className="relative border-b border-gray-300 dark:border-gray-700 focus-within:border-primary transition-colors">
@@ -99,7 +99,7 @@ export default function Contact() {
                   required
                   value={formData.email}
                   className="w-full bg-transparent py-3 outline-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
             </div>
@@ -113,17 +113,17 @@ export default function Contact() {
                 required
                 value={formData.message}
                 className="w-full bg-transparent py-3 outline-none resize-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               />
             </div>
 
             {/* Submit Button */}
-          <motion.button type="submit" disabled={status === 'loading'} className="w-full btn btn-primary" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} > {status === 'loading' ? 'Sending...' : 'Send Message'} </motion.button>
+            <motion.button type="submit" disabled={status === 'loading'} className="w-full btn btn-primary" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} > {status === 'loading' ? 'Sending...' : 'Send Message'} </motion.button>
 
             {/* Success Message */}
             <AnimatePresence>
               {status === 'success' && (
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
