@@ -15,8 +15,7 @@ This portfolio is perfect for sharing your work with recruiters, clients, or any
 
 ## 🌍 Live Demo
 
-👉 [View Live Site](https://mansi-portfolio-90.vercel.app/)  
-
+👉 [View Live Site](https://www.mansiportfolio.tech/)
 ## 🛠️ Features
 
 - ✅ Fully responsive design for mobile, tablet, and desktop
