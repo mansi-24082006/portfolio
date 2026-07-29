@@ -60,11 +60,7 @@ export const achievements: Achievement[] = [
   {
     title: 'Google Cloud Arcade Legend',
     description:
-<<<<<<< HEAD
-      'Recognized as an Arcade Legend in the Google Cloud Arcade Facilitator Program after completing hands-on labs and quests across Google Cloud services including GKE, Compute Engine, BigQuery, Pub/Sub, and other core cloud technologies.',
-=======
       'Awarded Legend level in the Google Cloud Arcade facilitating track. Showcased proficiency in Docker containers, GKE Kubernetes deployments, Cloud SQL instances, and virtual network setups.',
->>>>>>> 5d4dd1b (Update portfolio UI)
     year: '2025',
     image: '/achievements/cloud.jpeg',
   },
@@ -80,17 +76,16 @@ export const achievements: Achievement[] = [
 /* ================= CERTIFICATIONS ================= */
 export const certifications: Certification[] = [
   {
-<<<<<<< HEAD
     title: 'Full Stack Web Development',
     issuer: 'Udemy',
     year: '2025',
     certificateFile: '/certificates/udemy.pdf',
-=======
+  },
+  {
     title: "Interview & Resume Mastery: From Resume to Job Offer",
     issuer: "Udemy",
     year: "2025",
     certificateFile: "/certificates/udemy.pdf",
->>>>>>> 5d4dd1b (Update portfolio UI)
   },
   {
     title: 'Embedded Software Engineer',

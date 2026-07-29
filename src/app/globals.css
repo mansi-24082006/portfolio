@@ -1,59 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-<<<<<<< HEAD
-  --color-primary: #4ca1ff;
-  --color-secondary: #6B7280;
-  --color-dark: #1F2937;
-  --color-light: #F9FAFB;
-  --color-text: #000000;
-  --color-bg: #ffffff;
-
-  --font-sans: 'Inter', sans-serif;
-
-  --animation-fade-in: fadeIn 0.5s ease-in-out;
-  --animation-slide-up: slideUp 0.5s ease-in-out;
-}
-
-.typewriter {
-  display: inline-block;
-  overflow: hidden; /* hide the overflowing text */
-  white-space: nowrap; /* keep text in single line */
-  border-right: 2px solid #22d3ee; /* cursor */
-  animation: typing 2.5s steps(30, end), blink 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-@keyframes blink {
-  0%, 50%, 100% { border-color: #22d3ee; }
-  25%, 75% { border-color: transparent; }
-}
-
-.animate-blink {
-  animation: blink 0.7s step-end infinite;
-}
-
-.signature {
-  font-family: 'Pacifico', cursive; /* your chosen font */
-  font-size: 3rem; /* adjust */
-  color: #22d3ee; /* neon/cyan */
-  border-right: none; /* remove typewriter cursor */
-  opacity: 0;
-  animation: draw 2s forwards;
-}
-
-@keyframes draw {
-  0% { opacity: 0; transform: translateX(-50px) rotate(-5deg); }
-  50% { opacity: 1; transform: translateX(5px) rotate(1deg); }
-  100% { opacity: 1; transform: translateX(0) rotate(0deg); }
-=======
   --color-primary: #2563EB;
   --color-secondary: #7C3AED;
   --color-accent: #06B6D4;
@@ -62,13 +9,81 @@
   --color-dark: #0F172A;
   --color-light: #FFFFFF;
   --color-card-dark: #111827;
-  
+
   --font-sans: 'Geist', 'Inter', sans-serif;
-  
+
   --animate-fade-in: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-slide-up: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-blur-reveal: blurReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
->>>>>>> 5d4dd1b (Update portfolio UI)
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  /* hide the overflowing text */
+  white-space: nowrap;
+  /* keep text in single line */
+  border-right: 2px solid #22d3ee;
+  /* cursor */
+  animation: typing 2.5s steps(30, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  50%,
+  100% {
+    border-color: #22d3ee;
+  }
+
+  25%,
+  75% {
+    border-color: transparent;
+  }
+}
+
+.animate-blink {
+  animation: blink 0.7s step-end infinite;
+}
+
+.signature {
+  font-family: 'Pacifico', cursive;
+  /* your chosen font */
+  font-size: 3rem;
+  /* adjust */
+  color: #22d3ee;
+  /* neon/cyan */
+  border-right: none;
+  /* remove typewriter cursor */
+  opacity: 0;
+  animation: draw 2s forwards;
+}
+
+@keyframes draw {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) rotate(-5deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(5px) rotate(1deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -76,8 +91,13 @@
 /* === CUSTOM UTILITIES & ANIMATIONS === */
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
@@ -85,6 +105,7 @@
     transform: translateY(30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -97,6 +118,7 @@
     opacity: 0;
     transform: scale(0.96);
   }
+
   to {
     filter: blur(0);
     opacity: 1;
@@ -150,7 +172,7 @@
 
 /* Grid & dot pattern backgrounds */
 .grid-bg {
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
@@ -158,13 +180,13 @@
 }
 
 .dark .grid-bg {
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 }
 
 .light-grid-bg {
-  background-image: 
+  background-image:
     linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
@@ -197,6 +219,7 @@
 ::-webkit-scrollbar-track {
   background: #0f172a;
 }
+
 .light ::-webkit-scrollbar-track {
   background: #ffffff;
 }
@@ -206,6 +229,7 @@
   border-radius: 99px;
   border: 2px solid transparent;
 }
+
 .light ::-webkit-scrollbar-thumb {
   background: rgba(15, 23, 42, 0.15);
 }
@@ -234,6 +258,7 @@ html {
 .hover-underline-span {
   position: relative;
 }
+
 .hover-underline-span::after {
   content: '';
   position: absolute;
@@ -246,6 +271,7 @@ html {
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
+
 .hover-underline-span:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
