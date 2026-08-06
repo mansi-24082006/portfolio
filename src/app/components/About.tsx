@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, ArrowDownToLine, Flame, Sparkles, Compass, CheckCircle2 } from 'lucide-react'
 import Image from 'next/image'
+import { RESUME_URL } from '../../contents/extraData'
 
 export default function About() {
     const strengths = [
@@ -188,7 +189,7 @@ export default function About() {
                         {/* Action Resume button */}
                         <motion.div variants={itemVariants}>
                             <a
-                                href="https://drive.google.com/file/d/1MSGQV0Nuu2yGTIaMCy-Cq2Ua4e0shgRC/view?usp=drive_link"
+                                href={RESUME_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full group flex items-center justify-center gap-2 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)]"

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Terminal, Moon, Sun, ArrowRight, X, Sparkles, FileText, ExternalLink } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
 import { projects } from '../../contents/projects'
+import { RESUME_URL } from '../../contents/extraData'
 import { useRouter } from 'next/navigation'
 
 interface CommandPaletteProps {
@@ -30,7 +31,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
         { label: 'Navigate to FAQ Accordions', action: () => handleScroll('faq'), category: 'Navigation' },
         { label: 'Navigate to Contact Form', action: () => handleScroll('contact'), category: 'Navigation' },
         { label: 'Toggle Dark / Light Theme', action: () => { toggleTheme(); onClose(); }, category: 'Preferences' },
-        { label: 'Download Resume Portfolio', action: () => { window.open('https://drive.google.com/file/d/1IuTspQVA18EXvzXoeVF6zyBvDVdCWufz/view?usp=sharing', '_blank'); onClose(); }, category: 'Actions' }
+        { label: 'Download Resume Portfolio', action: () => { window.open(RESUME_URL, '_blank'); onClose(); }, category: 'Actions' }
     ]
 
     // Map projects as actionable search items

@@ -1,3 +1,5 @@
+export const RESUME_URL = 'https://drive.google.com/file/d/1sjlWEQoWWWGlfbl9WxvLEQV8Q2j1IPk5/view?usp=drive_link'
+
 export interface BlogArticle {
     title: string
     description: string

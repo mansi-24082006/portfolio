@@ -7,6 +7,7 @@ import { SiLeetcode, SiMongodb, SiTypescript, SiNextdotjs } from 'react-icons/si
 import { FolderGit, ArrowDownToLine, Mail, Sparkles, Cpu, Layers, Globe } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import TypedText from './TypedText' // Assuming this component exists in your folder
+import { RESUME_URL } from '../../contents/extraData'
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -171,7 +172,7 @@ export default function Hero() {
 
               {/* Secondary Action: Resume */}
               <a
-                href="https://drive.google.com/file/d/1MSGQV0Nuu2yGTIaMCy-Cq2Ua4e0shgRC/view?usp=drive_link"
+                href={RESUME_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="pointer-cursor group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-slate-200 font-bold text-sm backdrop-blur-md transition-all hover:scale-105 active:scale-95"

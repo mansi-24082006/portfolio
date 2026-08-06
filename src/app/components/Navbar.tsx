@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useTheme } from '../context/ThemeContext'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sun, Moon, Menu, X, Search, FileText } from 'lucide-react'
+import { RESUME_URL } from '../../contents/extraData'
 
 interface NavbarProps {
   onOpenPalette?: () => void
@@ -171,7 +172,7 @@ export default function Navbar({ onOpenPalette }: NavbarProps) {
             </button>
 
             <a
-              href="https://drive.google.com/file/d/1MSGQV0Nuu2yGTIaMCy-Cq2Ua4e0shgRC/view?usp=drive_link"
+              href={RESUME_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm hover:shadow transition-all active:scale-95"
@@ -263,8 +264,8 @@ export default function Navbar({ onOpenPalette }: NavbarProps) {
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={`block py-3 text-2xl font-bold uppercase tracking-wider rounded-xl transition-all duration-300 ${isActive
-                            ? 'text-blue-600 dark:text-blue-400 scale-105'
-                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                          ? 'text-blue-600 dark:text-blue-400 scale-105'
+                          : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                           }`}
                       >
                         {item.label}
@@ -278,7 +279,7 @@ export default function Navbar({ onOpenPalette }: NavbarProps) {
             {/* Bottom Actions Area */}
             <div className="p-8 border-t border-slate-100 dark:border-white/5 flex flex-col gap-4 items-center bg-slate-50/50 dark:bg-slate-950/20">
               <a
-                href="https://drive.google.com/file/d/1MSGQV0Nuu2yGTIaMCy-Cq2Ua4e0shgRC/view?usp=drive_link"
+                href={RESUME_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
