@@ -6,7 +6,7 @@ import { SiLeetcode, SiX } from 'react-icons/si'
 
 export default function Footer() {
   const socialActions = [
-    { href: 'https://github.com/mansi-24082006', icon: <FaGithub />, title: 'GitHub' },
+    { href: 'https://github.com/mansi-tech99', icon: <FaGithub />, title: 'GitHub' },
     { href: 'https://www.linkedin.com/in/mansi-vaghasiya-22457a2b2', icon: <FaLinkedin />, title: 'LinkedIn' },
     { href: 'https://leetcode.com/u/mansivag2006/', icon: <SiLeetcode />, title: 'LeetCode' },
     { href: 'https://x.com/VaghasiyaM2408?t=BMQhXdF6LLxuXpLAh8-tuw&s=09', icon: <SiX />, title: 'X (Twitter)' },

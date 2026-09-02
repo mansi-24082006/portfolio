@@ -1,4 +1,4 @@
-export const RESUME_URL = 'https://drive.google.com/file/d/1sjlWEQoWWWGlfbl9WxvLEQV8Q2j1IPk5/view?usp=drive_link'
+export const RESUME_URL = 'https://drive.google.com/file/d/19xfjgAUlxUmDYlO31hlquEJxyoGT0yl0/view?usp=drive_link'
 
 export interface BlogArticle {
     title: string
@@ -168,8 +168,8 @@ export const codingProfiles: CodingProfile[] = [
     },
     {
         platform: 'GitHub',
-        username: 'mansi-24082006',
-        url: 'https://github.com/mansi-24082006',
+        username: 'mansi-tech99',
+        url: 'https://github.com/mansi-tech99',
         metrics: [
             { label: 'Total Contributions', value: '380+ (2025)' },
             { label: 'Public Repositories', value: 28 },

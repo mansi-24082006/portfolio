@@ -73,7 +73,7 @@ export default function RootLayout({
       "name": "Gujarat Technological University"
     },
     "sameAs": [
-      "https://github.com/mansi-24082006",
+      "https://github.com/mansi-tech99",
       "https://www.linkedin.com/in/mansi-vaghasiya-22457a2b2"
     ]
   };

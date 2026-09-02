@@ -60,13 +60,16 @@ export default function CodingProfiles() {
                     {/* LEFT: CODING PROFILES OVERVIEW PANELS */}
                     <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 order-2 lg:order-1">
                         {codingProfiles.map((p, index) => (
-                            <motion.div
+                            <motion.a
                                 key={p.platform}
+                                href={p.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 initial={{ opacity: 0, y: 12 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.35, delay: index * 0.06 }}
-                                className="p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#111827] shadow-sm flex flex-col justify-between hover:border-blue-500/20 hover:shadow-md transition-all group"
+                                className="p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white dark:bg-[#111827] shadow-sm flex flex-col justify-between hover:border-blue-500/20 hover:shadow-md transition-all group cursor-pointer"
                             >
                                 <div>
                                     {/* Title platform header */}
@@ -80,15 +83,12 @@ export default function CodingProfiles() {
                                             </span>
                                         </div>
 
-                                        <a
-                                            href={p.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="p-1.5 rounded-lg border border-transparent hover:border-slate-200 dark:hover:border-white/10 text-slate-400 group-hover:text-blue-500 transition-colors"
+                                        <div
+                                            className="p-1.5 rounded-lg border border-transparent group-hover:border-slate-200 dark:group-hover:border-white/10 text-slate-400 group-hover:text-blue-500 transition-colors"
                                             title={`Visit ${p.platform} Profile`}
                                         >
                                             <ExternalLink className="w-3.5 h-3.5" />
-                                        </a>
+                                        </div>
                                     </div>
 
                                     {/* Username */}
@@ -115,7 +115,7 @@ export default function CodingProfiles() {
                                     <span>Visit Profile</span>
                                     <ChevronRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1" />
                                 </div>
-                            </motion.div>
+                            </motion.a>
                         ))}
                     </div>
 

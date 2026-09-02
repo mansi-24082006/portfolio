@@ -44,7 +44,7 @@ export default function ContactForm() {
 
     const socialLinks = [
         { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mansi-vaghasiya-22457a2b2', icon: <FaLinkedin />, color: 'text-blue-500' },
-        { label: 'GitHub', href: 'https://github.com/mansi-24082006', icon: <FaGithub />, color: 'text-slate-800 dark:text-white' },
+        { label: 'GitHub', href: 'https://github.com/mansi-tech99', icon: <FaGithub />, color: 'text-slate-800 dark:text-white' },
         { label: 'LeetCode', href: 'https://leetcode.com/u/mansivag2006/', icon: <SiLeetcode />, color: 'text-amber-500' },
     ]
 

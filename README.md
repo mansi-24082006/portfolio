@@ -45,7 +45,7 @@ This portfolio is perfect for sharing your work with recruiters, clients, or any
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/mansi-24082006/portfolio.git
+git clone https://github.com/mansi-tech99/portfolio.git
 
 ```
 ```bash

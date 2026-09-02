@@ -63,7 +63,7 @@ export default function Hero() {
   }, [])
 
   const socialLinks = [
-    { href: 'https://github.com/mansi-24082006', icon: <FaGithub />, label: 'GitHub', color: 'hover:text-white hover:bg-slate-800 hover:border-slate-700' },
+    { href: 'https://github.com/mansi-tech99', icon: <FaGithub />, label: 'GitHub', color: 'hover:text-white hover:bg-slate-800 hover:border-slate-700' },
     { href: 'https://www.linkedin.com/in/mansi-vaghasiya-22457a2b2', icon: <FaLinkedin />, label: 'LinkedIn', color: 'hover:text-blue-400 hover:bg-blue-900/30 hover:border-blue-500/50' },
     { href: 'https://leetcode.com/u/mansivag2006/', icon: <SiLeetcode />, label: 'LeetCode', color: 'hover:text-amber-500 hover:bg-amber-900/30 hover:border-amber-500/50' },
     { href: 'mailto:vaghasiyamansi80@gmail.com', icon: <FaEnvelope />, label: 'Email', color: 'hover:text-emerald-400 hover:bg-emerald-900/30 hover:border-emerald-500/50' }
